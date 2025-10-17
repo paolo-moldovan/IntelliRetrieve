@@ -1,3 +1,4 @@
+import uuid
 from chromadb import Client, Settings
 from chromadb.config import Settings
 import numpy as np
@@ -13,7 +14,7 @@ class VectorDB:
 
     def add_documents(self, texts: List[str], metadata: List[Dict] = None):
         try:
-            ids = [str(i) for i in range(len(texts))]
+            ids = [str(uuid.uuid4()) for _ in texts]
             
             self.collection.add(
                 documents=texts,
